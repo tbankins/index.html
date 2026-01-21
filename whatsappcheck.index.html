@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Number Checker</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; background-color: #f0f2f5; }
+        .card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #25D366; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #128C7E; }
+        .hint { font-size: 0.8rem; color: #666; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>WhatsApp Checker</h2>
+    <p class="hint">Enter number with country code (e.g., 14155552671)</p>
+    <input type="text" id="phoneInput" placeholder="Enter phone number...">
+    <button onclick="checkNumber()">Check on WhatsApp</button>
+    <p id="status"></p>
+</div>
+
+<script>
+    function checkNumber() {
+        const num = document.getElementById('phoneInput').value.replace(/\D/g,'');
+        if (num.length < 7) {
+            alert("Please enter a valid phone number with country code.");
+            return;
+        }
+        // This opens the official WhatsApp API link
+        const url = `https://api.whatsapp.com/send/?phone=${num}&text&type=phone_number&app_absent=0`;
+        window.open(url, '_blank');
+    }
+</script>
+
+</body>
+</html>
